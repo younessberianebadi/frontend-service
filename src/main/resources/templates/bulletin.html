@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Bulletin</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/style/style.css}">
+    <link rel="icon" href="/images/cubs.png" type="image/icon type">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<div class="header">
+    <a th:href="@{/}" class="logo"><img src="images/cubs.png" width="60" height="60"></a>
+    <div class="header-right">
+        <a th:href="@{/}">Accueil</a>
+        <a th:href="@{/list}">List des joueurs</a>
+        <a th:href="@{/fixtures}">Matches</a>
+        <a class="active" th:href="@{/listest}">Testes</a>
+        <a th:href="@{/trainings}">Entra&icirc;nements</a>
+        <form th:action="@{/logout}" method="post">
+            <input type="submit" value="Sign Out"/>
+        </form>
+    </div>
+</div>
+<div id="wrapper">
+    <h1 style="text-align: center">Bulletin de joueur / Player report Card</h1>
+    <br>
+    <p>Joueur            : <b th:text="${player.prenom + ' ' + player.nom}"></b></p>
+    <p>Date              : <b th:text="${test.date}"></b></p>
+    <p>Commentaire       : <b style="color: green" th:text="${test.comment}">Something!</b></p>
+    <br>
+    <table id="players">
+        <tr>
+            <th>Cat&eacute;gorie</th>
+            <th>Type</th>
+            <th>Comp&eacute;tance</th>
+            <th>R&eacute;sultats</th>
+        </tr>
+        <tr >
+            <td rowspan="5" style="background-color: orange; color: white; text-align: center;"><b>Qualités mentales</b></td>
+            <td rowspan="5">&Eacute;tat d'esprit</td>
+            <td>Confiance en soi<span> </span></td>
+            <td th:text="${test.confiance_en_soi}" style="text-align: center"></td>
+        </tr>
+        <tr >
+            <td>Goût de l'effort<span> </span></td>
+            <td th:text="${test.gout_de_l_effort}"  style="text-align: center"></td>
+        </tr>
+        <tr >
+            <td>Concentration</td>
+            <td th:text="${test.concentration}"  style="text-align: center"></td>
+        </tr>
+        <tr >
+            <td>Application</td>
+            <td th:text="${test.application}"  style="text-align: center"></td>
+        </tr>
+        <tr >
+            <td>Joueur Équipier</td>
+            <td th:text="${test.joueur_equipier}"  style="text-align: center"></td>
+        </tr>
+        <tr>
+            <td rowspan="17" style="background-color: blue; color: white; text-align: center;"><b>Habilet&eacute;s Techniques</b></td>
+            <td>Orientation du corps</td>
+            <td>Position des épaules/jeu de corps</td>
+            <td th:text="${test.orientation_du_corps}"  style="text-align: center"></td>
+        </tr>
+        <tr >
+            <td rowspan="7">Maitrise individuelle</td>
+            <td>Jonglage</td>
+            <td th:text="${test.jonglage}"  style="text-align: center"></td>
+        </tr>
+        <tr >
+            <td>Conduite de balle</td>
+            <td th:text="${test.conduite_de_balle}"  style="text-align: center"></td>
+        </tr>
+        <tr >
+            <td >Dribbles et feintes</td>
+            <td th:text="${test.dribbles_et_feintes}"  style="text-align: center"></td>
+        </tr>
+        <tr >
+            <td >Protection de Ballon</td>
+            <td th:text="${test.protection_de_ballon}"  style="text-align: center"></td>
+        </tr>
+        <tr >
+            <td>Première touche<span> </span></td>
+            <td th:text="${test.premiere_touche}"  style="text-align: center"></td>
+        </tr>
+        <tr >
+            <td >Contrôles<span>  </span>orientés<span> </span></td>
+            <td th:text="${test.controles_orientes}"  style="text-align: center"></td>
+        </tr>
+        <tr >
+            <td>  </span>aériens</td>
+            <td th:text="${test.controles_aeriens}"  style="text-align: center"></td>
+        </tr>
+        <tr >
+            <td rowspan="8">Techniques de frappe</td>
+            <td >Passes courtes</td>
+            <td th:text="${test.passes_courtes}"  style="text-align: center"></td>
+        </tr>
+        <tr >
+            <td >Passes moyennes</td>
+            <td th:text="${test.passes_moyennes}"  style="text-align: center"></td>
+        </tr>
+        <tr >
+            <td >Passes longues</td>
+            <td th:text="${test.passes_longues}"  style="text-align: center"></td>
+        </tr>
+        <tr >
+            <td >Centres</td>
+            <td th:text="${test.centres}"  style="text-align: center"></td>
+        </tr>
+        <tr >
+            <td >Volée<span> </span></td>
+            <td th:text="${test.volee}"  style="text-align: center"></td>
+        </tr>
+        <tr >
+            <td >Tirs</td>
+            <td th:text="${test.tirs}"  style="text-align: center"></td>
+        </tr>
+        <tr >
+            <td >Jeu de tête</td>
+            <td th:text="${test.jeu_de_tete}"  style="text-align: center"></td>
+        </tr>
+        <tr >
+            <td >Pied Faible</td>
+            <td th:text="${test.pied_faible}"  style="text-align: center"></td>
+        </tr>
+        <tr>
+            <td>Technique d&eacute;fensive</td>
+            <td>1 c 1</td>
+            <td th:text="${test.x_1_vs_1}"  style="text-align: center"></td>
+        </tr>
+        <tr >
+            <td rowspan="8" style="background-color: orange; color: white; text-align: center;"><b>Habiletés Tactiques</b></td>
+            <td rowspan="4">Implication dans le jeu offensif</td>
+            <td >Vision de jeu<span> </span></td>
+            <td th:text="${test.vision_de_jeu}"  style="text-align: center"></td>
+        </tr>
+        <tr >
+            <td>Créativité et prise d'initiatives</td>
+            <td th:text="${test.creativite_et_prise_d_initiatives}"  style="text-align: center"></td>
+        </tr>
+        <tr >
+            <td >Placement</td>
+            <td th:text="${test.placement}"  style="text-align: center"></td>
+        </tr>
+        <tr >
+            <td >Déplacement</td>
+            <td th:text="${test.deplacement}"  style="text-align: center">5</td>
+        </tr>
+        <tr >
+            <td rowspan="4">Implication dans le jeu d&eacute;fensif</td>
+            <td >Attitude à la perte de balle</td>
+            <td th:text="${test.attitude_a_la_perte_de_balle}"  style="text-align: center"></td>
+        </tr>
+        <tr >
+            <td >Mise en pratique des principes de zone (cadrage, couverture, coulissage…)</td>
+            <td th:text="${test.mise_en_pratique_des_principes_de_zone}"  style="text-align: center"></td>
+        </tr>
+        <tr >
+            <td >Anticipation</td>
+            <td th:text="${test.anticipation}"  style="text-align: center"></td>
+        </tr>
+        <tr >
+            <td >Replacement</td>
+            <td th:text="${test.replacement}"  style="text-align: center"></td>
+        </tr>
+        <tr >
+            <td rowspan="6" style="background-color: blue; color: white; text-align: center;"><b>Qualités physiques</b></td>
+            <td rowspan="6"></td>
+            <td>Motricité</td>
+            <td th:text="${test.motricite}"  style="text-align: center"></td>
+        </tr>
+        <tr >
+            <td>Vivacité</td>
+            <td th:text="${test.vivacite}"  style="text-align: center"></td>
+        </tr>
+        <tr >
+            <td>Vitesse</td>
+            <td th:text="${test.vitesse}"  style="text-align: center"></td>
+        </tr>
+        <tr >
+            <td>Endurance</td>
+            <td th:text="${test.endurance}"  style="text-align: center"></td>
+        </tr>
+        <tr >
+            <td>Puissance</td>
+            <td th:text="${test.puissance}"  style="text-align: center"></td>
+        </tr>
+        <tr >
+            <td >Souplesse</td>
+            <td th:text="${test.souplesse}"  style="text-align: center"></td>
+        </tr>
+    </table>
+    <button class="registerbtn"><a th:href="@{/testlist}">Retour</a></button>
+</div>
+<div class="footer">
+    <p> &copy; 2021 DIGIWISE - Tous droits r&eacute;serv&eacute;s.</p>
+</div>
+</body>
+</html>

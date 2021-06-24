@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Ajouter un test</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/style/style.css}">
+    <link rel="icon" href="images/cubs.png" type="image/icon type">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type="text/css">
+        .container {
+  padding: 16px;
+  background-color: white;
+}
+
+/* Full-width input fields */
+input[type=text], input[type=password], input[type=date], select, textarea {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
+input[type=text]:focus, input[type=password]:focus, input[type=date]:focus, select:focus, textarea:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Overwrite default styles of hr */
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+
+/* Set a style for the submit button */
+.registerbtn {
+  background-image: linear-gradient(to right, #ffecd2 0%, #fcb69f 100%);
+  color: #000;
+  padding: 16px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+
+.registerbtn:hover {
+  opacity: 1;
+}
+
+/* Add a blue text color to links */
+a {
+  color: dodgerblue;
+}
+
+/* Set a grey background color and center the text of the "sign in" section */
+.signin {
+  background-color: #f1f1f1;
+  text-align: center;
+}
+.row {
+    overflow: hidden;
+    padding: 10px;
+}
+.col {
+    float: left;
+    width: 50%
+}
+input[type=number] {
+  left: 10px;
+  top: 10px;
+  width: 50px;
+  height: 20px;
+  padding: 0px;
+  font-size: 14pt;
+  border: solid 0.5px #000;
+  z-index: 1;
+}
+
+.spinner-button {
+  cursor: default;
+  z-index: 2;
+  background-color: #ccc;
+  width: 14.5px;
+  text-align: center;
+  margin: 0px;
+  pointer-events: none;
+  height: 10px;
+  line-height: 10px;
+}
+
+  </style>
+</head>
+<body>
+<div class="header">
+    <a th:href="@{/}" class="logo"><img src="images/cubs.png" width="60" height="60"></a>
+    <div class="header-right">
+        <a th:href="@{/}">Accueil</a>
+        <a th:href="@{/list}">List des joueurs</a>
+        <a th:href="@{/fixtures}">Matches</a>
+        <a class="active" th:href="@{/listest}">Testes</a>
+        <a th:href="@{/trainings}">Entra&icirc;nements</a>
+        <form th:action="@{/logout}" method="post">
+            <input type="submit" value="Sign Out"/>
+        </form>
+    </div>
+</div>
+<div id="wrapper">
+    <h1>Ajouter un test</h1>
+    <form th:object="${test}" th:action="@{/saveTest}" method="post">
+        <div class="container">
+            <label for="date"><b>Date</b></label>
+            <input type="date" name="date" id="date" th:field="*{date}">
+
+            <label for="fullname"><b>Pour joueur</b></label>
+            <select id="fullname" th:field="*{id_player}">
+                <option th:each="player : ${players}" th:text="${player.prenom + ' ' + player.nom}" th:value="${player.id}"></option>
+            </select>
+
+            <h2>Qualités mentales</h2>
+            <h3 style="color: grey">Etat d'esprit</h3>
+            <div class="row">
+                <div class="col">
+                    <label for="IDofInput"><b>Confiance en soi : </b></label>
+                    <input type="number" value="0" min="0" max="10" step="0.1" th:field="*{confiance_en_soi}"/>
+                </div>
+                <div class="col">
+                    <label for="IDofInput"><b>Goût de l'effort : </b></label>
+                    <input type="number" value="0" min="0" max="10" step="0.1" th:field="*{gout_de_l_effort}"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label for="IDofInput"><b>Concentration : </b></label>
+                    <input type="number" value="0" min="0" max="10" step="0.1" th:field="*{concentration}"/>
+                </div>
+                <div class="col">
+                    <label for="IDofInput"><b>Application : </b></label>
+                    <input type="number" value="0" min="0" max="10" step="0.1" th:field="*{application}"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label for="IDofInput"><b>Joueur Équipier : </b></label>
+                    <input type="number" value="0" min="0" max="10" step="0.1" th:field="*{joueur_equipier}"/>
+                </div>
+            </div>
+            <h2>Habiletés Techniques</h2>
+            <h3 style="color: grey">Orientation du corps</h3>
+            <div class="row">
+                <div class="col">
+                    <label for="IDofInput"><b>Position des épaules/jeu de corps : </b></label>
+                    <input type="number" value="0" min="0" max="10" step="0.1" th:field="*{orientation_du_corps}"/>
+                </div>
+            </div>
+            <h3 style="color: grey">Maitrise individuelle</h3>
+            <div class="row">
+                <div class="col">
+                    <label for="IDofInput"><b>Jonglage : </b></label>
+                    <input type="number" value="0" min="0" max="10" step="0.1" th:field="*{jonglage}"/>
+                </div>
+                <div class="col">
+                    <label for="IDofInput"><b>Conduite de balle : </b></label>
+                    <input type="number" value="0" min="0" max="10" step="0.1" th:field="*{conduite_de_balle}"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label for="IDofInput"><b>Dribbles et feintes : </b></label>
+                    <input type="number" value="0" min="0" max="10" step="0.1" th:field="*{dribbles_et_feintes}"/>
+                </div>
+                <div class="col">
+                    <label for="IDofInput"><b>Protection de ballon : </b></label>
+                    <input type="number" value="0" min="0" max="10" step="0.1" th:field="*{protection_de_ballon}"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label for="IDofInput"><b>Première touche : </b></label>
+                    <input type="number" value="0" min="0" max="10" step="0.1" th:field="*{premiere_touche}"/>
+                </div>
+                <div class="col">
+                    <label for="IDofInput"><b>Contrôles orientés  : </b></label>
+                    <input type="number" value="0" min="0" max="10" step="0.1" th:field="*{controles_orientes}"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label for="IDofInput"><b>Contrôles aériens : </b></label>
+                    <input type="number" value="0" min="0" max="10" step="0.1" th:field="*{controles_aeriens}"/>
+                </div>
+            </div>
+            <h3 style="color: grey">Technique de frappe</h3>
+            <div class="row">
+                <div class="col">
+                    <label for="IDofInput"><b>Passes courtes : </b></label>
+                    <input type="number" value="0" min="0" max="10" step="0.1" th:field="*{passes_courtes}"/>
+                </div>
+                <div class="col">
+                    <label for="IDofInput"><b>Passes moyennes : </b></label>
+                    <input type="number" value="0" min="0" max="10" step="0.1" th:field="*{passes_moyennes}"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label for="IDofInput"><b>Passes longues : </b></label>
+                    <input type="number" value="0" min="0" max="10" step="0.1" th:field="*{passes_longues}"/>
+                </div>
+                <div class="col">
+                    <label for="IDofInput"><b>Centres : </b></label>
+                    <input type="number" value="0" min="0" max="10" step="0.1" th:field="*{centres}"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label for="IDofInput"><b>Vol&eacute;e : </b></label>
+                    <input type="number" value="0" min="0" max="10" step="0.1" th:field="*{volee}"/>
+                </div>
+                <div class="col">
+                    <label for="IDofInput"><b>Tirs : </b></label>
+                    <input type="number" value="0" min="0" max="10" step="0.1" th:field="*{tirs}"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label for="IDofInput"><b>Jeu de tetes : </b></label>
+                    <input type="number" value="0" min="0" max="10" step="0.1" th:field="*{jeu_de_tete}"/>
+                </div>
+                <div class="col">
+                    <label for="IDofInput"><b>Pied faible : </b></label>
+                    <input type="number" value="0" min="0" max="10" step="0.1" th:field="*{pied_faible}"/>
+                </div>
+            </div>
+            <h3 style="color: grey">Technique défensive</h3>
+            <div class="row">
+                <div class="col">
+                    <label for="IDofInput"><b>1 c 1 : </b></label>
+                    <input type="number" value="0" min="0" max="10" step="0.1" th:field="*{x_1_vs_1}"/>
+                </div>
+            </div>
+            <h2>Habiletés Tactiques</h2>
+            <h3 style="color: grey">Implication dans le jeu offensif</h3>
+            <div class="row">
+                <div class="col">
+                    <label for="IDofInput"><b>Vision de jeu: </b></label>
+                    <input type="number" value="0" min="0" max="10" step="0.1" th:field="*{vision_de_jeu}"/>
+                </div>
+                <div class="col">
+                    <label for="IDofInput"><b>Cr&eacute;ativit&eacute; et prise d'initiatives : </b></label>
+                    <input type="number" value="0" min="0" max="10" step="0.1" th:field="*{creativite_et_prise_d_initiatives}"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label for="IDofInput"><b>Placement : </b></label>
+                    <input type="number" value="0" min="0" max="10" step="0.1" th:field="*{placement}"/>
+                </div>
+                <div class="col">
+                    <label for="IDofInput"><b>Déplacement : </b></label>
+                    <input type="number" value="0" min="0" max="10" step="0.1" th:field="*{deplacement}"/>
+                </div>
+            </div>
+            <h3 style="color: grey">Implication dans le jeu défensif</h3>
+            <div class="row">
+                <div class="col">
+                    <label for="IDofInput"><b>Attitude à la perte de balle : </b></label>
+                    <input type="number" value="0" min="0" max="10" step="0.1" th:field="*{attitude_a_la_perte_de_balle}"/>
+                </div>
+                <div class="col">
+                    <label for="IDofInput"><b>Mise en pratique des principes de zone : </b></label>
+                    <input type="number" value="0" min="0" max="10" step="0.1" th:field="*{mise_en_pratique_des_principes_de_zone}"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label for="IDofInput"><b>Anticipation : </b></label>
+                    <input type="number" value="0" min="0" max="10" step="0.1" th:field="*{anticipation}"/>
+                </div>
+                <div class="col">
+                    <label for="IDofInput"><b>Replacement : </b></label>
+                    <input type="number" value="0" min="0" max="10" step="0.1" th:field="*{replacement}"/>
+                </div>
+            </div>
+            <h2>Qualités physiques</h2>
+            <div class="row">
+                <div class="col">
+                    <label for="IDofInput"><b>Motricité : </b></label>
+                    <input type="number" value="0" min="0" max="10" step="0.1" th:field="*{motricite}"/>
+                </div>
+                <div class="col">
+                    <label for="IDofInput"><b>Vivacit&eacute; : </b></label>
+                    <input type="number" value="0" min="0" max="10" step="0.1" th:field="*{vivacite}"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label for="IDofInput"><b>Vitesse : </b></label>
+                    <input type="number" value="0" min="0" max="10" step="0.1" th:field="*{vitesse}"/>
+                </div>
+                <div class="col">
+                    <label for="IDofInput"><b>Endurance : </b></label>
+                    <input type="number" value="0" min="0" max="10" step="0.1" th:field="*{endurance}"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label for="IDofInput"><b>Puissance : </b></label>
+                    <input type="number" value="0" min="0" max="10" step="0.1" th:field="*{puissance}"/>
+                </div>
+                <div class="col">
+                    <label for="IDofInput"><b>Souplesse : </b></label>
+                    <input type="number" value="0" min="0" max="10" step="0.1" th:field="*{souplesse}"/>
+                </div>
+            </div>
+            <label for="comment"><b>Commentaire</b></label>
+            <textarea id="comment" rows="5" placeholder="Commentaire//" th:field="*{comment}"></textarea>
+
+            <hr>
+
+            <button type="submit" class="registerbtn">Ajouter un test</button>
+        </div>
+
+    </form>
+
+</div>
+<div class="footer">
+    <p> &copy; 2021 DIGIWISE - Tous droits r&eacute;serv&eacute;s.</p>
+</div>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Recherche</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/style/style.css}">
+    <link rel="icon" th:href="@{/images/cubs.png}" type="image/icon type">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+<div class="header">
+    <a th:href="@{/}" class="logo"><img src="images/cubs.png" width="60" height="60"></a>
+    <div class="header-right">
+        <a th:href="@{/}">Accueil</a>
+        <a class="active" th:href="@{/list}">List des joueurs</a>
+        <a th:href="@{/fixtures}">Matches</a>
+        <a th:href="@{/listest}">Testes</a>
+        <a th:href="@{/trainings}">Entra&icirc;nements</a>
+        <form th:action="@{/logout}" method="post">
+            <input type="submit" value="Sign Out"/>
+        </form>
+    </div>
+</div>
+<form method="post" th:action="@{/searchByName}">
+    <div class="search-container">
+        <input type="text" th:object="${name}" class="search" placeholder="Nom">
+        <!--
+        <input type="text" class="date-from" placeholder="Matricule">
+        <input type="text" class="date-to" placeholder="Pr&eacute;nom">
+        -->
+        <input type="submit" id="button" value="Recherche par nom">
+    </div>
+</form>
+<table id="myTable">
+    <tr class="header">
+        <th style="width:20%;">Matricule</th>
+        <th style="width:40%;">Nom</th>
+        <th style="width:40%;">Pr&eacute;nom</th>
+    </tr>
+    <tr onclick="window.location='#';" style="cursor: pointer;" >
+        <td id="matricule-column"></td>
+        <td id="name-column"></td>
+        <td id="fname-column"></td>
+    </tr>
+</table>
+</div>
+<div class="footer">
+    <p> &copy; 2021 DIGIWISE - Tous droits r&eacute;serv&eacute;s.</p>
+</div>
+</body>
+</html>

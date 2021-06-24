@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Ajouter un joueur</title>
+    <link rel="stylesheet" type="text/css" th:href="@{style/style.css}">
+    <link rel="icon" href="images/cubs.png" type="image/icon type">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type="text/css">
+    .container {
+  padding: 16px;
+  background-color: white;
+}
+
+/* Full-width input fields */
+input[type=text], input[type=password], input[type=date], input[type=number], select {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
+input[type=text]:focus, input[type=password]:focus, input[type=date]:focus, input[type=number], select {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Overwrite default styles of hr */
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+
+
+/* Add a blue text color to links */
+a {
+  color: dodgerblue;
+}
+
+/* Set a grey background color and center the text of the "sign in" section */
+.signin {
+  background-color: #f1f1f1;
+  text-align: center;
+}
+  </style>
+</head>
+<body>
+<div class="header">
+    <a th:href="@{/}" class="logo"><img src="images/cubs.png" width="60" height="60"></a>
+    <div class="header-right">
+        <a th:href="@{/}">Accueil</a>
+        <a class="active" th:href="@{/list}">List des joueurs</a>
+        <a th:href="@{/fixtures}">Matches</a>
+        <a th:href="@{/listest}">Testes</a>
+        <a th:href="@{/trainings}">Entra&icirc;nements</a>
+        <form th:action="@{/logout}" method="post">
+            <input type="submit" value="Sign Out"/>
+        </form>
+    </div>
+</div>
+<div id="wrapper">
+    <h1 style="text-align: center">Ajouter un joueur</h1>
+    <form th:object="${joueur}" th:action="@{/save}" method="post">
+        <div class="container">
+            <label ><b>Nom</b></label>
+            <input type="text" placeholder="Entrer le nom" name="name" id="name" th:field="*{nom}" required>
+
+            <label for="fname"><b>Pr&eacute;nom</b></label>
+            <input type="text" placeholder="Entrer le pr&eacute;nom" name="fname" id="fname" th:field="*{prenom}" required>
+
+            <label for="fname"><b>Matricule</b></label>
+            <input type="number" placeholder="Entrer le pr&eacute;nom" th:field="*{matricule}" required>
+
+            <label for="fname"><b>Age</b></label>
+            <input type="number" placeholder="Entrer le pr&eacute;nom" th:field="*{age}" required>
+
+            <label for="sexe"><b>Sexe</b></label>
+            <select id="sexe" name="sexe" th:field="*{sexe}" required>
+                <option th:value="'Female'">F&eacute;minin</option>
+                <option th:value="'Male'">Masculin</option>
+            </select>
+
+            <label for="fname"><b>Taille</b></label>
+            <input type="number" placeholder="Entrer le pr&eacute;nom" th:field="*{taille}" required>
+
+            <label for="fname"><b>Poids</b></label>
+            <input type="number" placeholder="Entrer le pr&eacute;nom" th:field="*{poids}" required>
+
+            <label for="fname"><b>Nationalite</b></label>
+            <select id="sexe" name="sexe" th:field="*{nationalite}" required>
+                <option th:value="'Moroccan'">Marocain</option>
+                <option th:value="'Foreigner'">&Eacute;tranger</option>
+            </select>
+
+            <label for="fname"><b>Categorie</b></label>
+            <select th:field="*{categorie}">
+                <option th:value="'U6'" th:text="U6"></option>
+                <option th:value="'U8'" th:text="U8"></option>
+                <option th:value="'U10'" th:text="U10"></option>
+                <option th:value="'U12'" th:text="U12"></option>
+                <option th:value="'U14'" th:text="U14"></option>
+                <option th:value="'U16'" th:text="U16"></option>
+            </select>
+
+            <label for="poste"><b>Poste</b></label>
+            <select id="poste" name="sexe" th:field="*{posteJoueur}" required>
+                <option th:value="'Attacker'">Attaquant(e)</option>
+                <option th:value="'Defender'">D&eacute;fenseur(se)</option>
+                <option th:value="'Mildfielder'">Milieu</option>
+                <option th:value="'Goalkeeper'">Gardien(ne)</option>
+            </select>
+
+            <label for="fname"><b>Maillot</b></label>
+            <input type="number" placeholder="Entrer le pr&eacute;nom" th:field="*{numeroMaillot}" required>
+
+            <!--
+            <label for="birthday"><b>Date de naissance</b></label>
+            <input type="date" id="birthday" name="birthday" required>
+
+            <label for="sexe"><b>Sexe</b></label>
+            <select id="sexe" name="sexe" required>
+                <option value="female">F&eacute;m&eacute;nin</option>
+                <option value="male">Masculin</option>
+                <option value="other">Autre</option>
+            </select>
+
+            <label for="height"><b>Taille</b> (cm)</label>
+            <input type="number" id="height" name="height" min="0" max="200" step="any">
+
+            <label for="weight"><b>Poids</b> (kg)</label>
+            <input type="number" id="weight" name="weight" min="0" max="150" step="any">
+
+            <label for="nationality"><b>Nationalit&eacute;</b></label>
+            <select id="nationality" name="nationality" required>
+                <option value="moroccan">Marocain(e)</option>
+                <option value="foreigner">&Eacute;tranger</option>
+            </select>
+
+            <label for="category"><b>Cat&eacute;gorie</b></label>
+            <select id="category" name="category" required>
+                <option value="u8">U8</option>
+                <option value="u10">U10</option>
+                <option value="u12">U12</option>
+                <option value="u14">U14</option>
+                <option value="u16">U16</option>
+            </select>
+
+            <label for="psw"><b>Mot de passe</b></label>
+            <input type="password" placeholder="Donner un mot de passe" name="psw" id="psw" required>
+
+            <label for="psw-repeat"><b>R&eacute;entrer le mot de passe</b></label>
+            <input type="password" placeholder="R&eacute;p&eacute;ter le mot de passe" name="psw-repeat" id="psw-repeat" required>
+            -->
+            <hr>
+
+            <button type="submit" class="registerbtn" value="Save">Cr&eacute;er le compte du joueuer</button>
+        </div>
+
+    </form>
+
+</div>
+<div class="footer">
+    <p> &copy; 2021 DIGIWISE - Tous droits r&eacute;serv&eacute;s.</p>
+</div>
+</body>
+</html>

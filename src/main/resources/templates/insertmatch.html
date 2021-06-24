@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Plannifier un match</title>
+    <link rel="stylesheet" type="text/css" th:href="@{style/style.css}">
+    <link rel="icon" href="images/cubs.png" type="image/icon type">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type="text/css">
+    .container {
+  padding: 16px;
+  background-color: white;
+}
+
+/* Full-width input fields */
+input[type=text], input[type=password], input[type=date], input[type=number], input[type=time], select {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
+input[type=text]:focus, input[type=password]:focus, input[type=date]:focus, input[type=number], input[type=time]:focus, select {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Overwrite default styles of hr */
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+
+/* Set a style for the submit button */
+.registerbtn {
+  background-image: linear-gradient(to right, #ffecd2 0%, #fcb69f 100%);
+  color: #000;
+  padding: 16px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+
+.registerbtn:hover {
+  opacity: 1;
+}
+
+/* Add a blue text color to links */
+a {
+  color: dodgerblue;
+}
+
+/* Set a grey background color and center the text of the "sign in" section */
+.signin {
+  background-color: #f1f1f1;
+  text-align: center;
+}
+  </style>
+</head>
+<body>
+<div class="header">
+    <a th:href="@{/}" class="logo"><img src="images/cubs.png" width="60" height="60"></a>
+    <div class="header-right">
+        <a th:href="@{/}">Accueil</a>
+        <a th:href="@{/list}">List des joueurs</a>
+        <a class="active" th:href="@{/fixtures}">Matches</a>
+        <a th:href="@{/listest}">Testes</a>
+        <a th:href="@{/trainings}">Entra&icirc;nements</a>
+        <form th:action="@{/logout}" method="post">
+            <input type="submit" value="Sign Out"/>
+        </form>
+    </div>
+</div>
+<div id="wrapper">
+    <h1>Plannifier un match</h1>
+    <form action="#" th:object="${match}" th:action="@{/saveMatch}" method="post">
+        <div class="container">
+
+            <label for="date"><b>Date</b></label>
+            <input type="date" id="date" th:field="*{date}" name="date" required>
+            <!--
+            <label for="time"><b>Heure</b></label>
+            <input type="time" id="time" name="time" min="09:00" max="20:00">
+
+             -->
+
+
+
+            <label for="category"><b>Lieu</b></label>
+            <input type="text" id="adversary" th:field="*{lieu}" name="adversary" >
+
+            <label for="category"><b>Type</b></label>
+            <select th:field="*{type}">
+                <option th:value="'Amical'" th:text="amical"></option>
+                <option th:value="'Ligue'" th:text="Ligue"></option>
+                <option th:value="'Coupe'" th:text="Coupe"></option>
+            </select>
+
+
+            <label for="category"><b>Cat&eacute;gorie</b></label>
+            <select th:field="*{categorie}">
+                <option th:value="'U6'" th:text="U6"></option>
+                <option th:value="'U8'" th:text="U8"></option>
+                <option th:value="'U10'" th:text="U10"></option>
+                <option th:value="'U12'" th:text="U12"></option>
+            </select>
+
+
+            <label for="category"><b>Adversaire</b></label>
+            <input type="text" id="adversary" th:field="*{adversary}" name="adversary" >
+
+            <!--
+            <select th:field="*{categirie}" id="category" name="category" required>
+                <option th:value="U8">U8</option>
+                <option th:value="U10">U10</option>
+                <option th:value="U12">U12</option>
+                <option th:value="U14">U14</option>
+                <option th:value="U16">U16</option>
+            </select>
+
+            <label for="adversary"><b>Adversaire</b></label>
+            <input type="text" id="adversary" name="adversary" >
+
+            <label for="type"><b>Type</b></label>
+            <select th:field="*{type}" id="type" name="type">
+                <option th:value="Amicale">Amical</option>
+                <option th:value="Ligue">Championnat</option>
+                <option th:value="Coupe">Coupe</option>
+            </select>
+
+            <label for="result"><b>R&eacute;sultat</b></label>
+            <select id="result" name="result">
+                <option value="won">Gagn&eacute;</option>
+                <option value="lost">Perdu</option>
+                <option value="draw">Egal</option>
+                <option value="notplayed">Pas encore jou&eacute;</option>
+            </select>
+
+            <label><b>Score</b></label>
+            <input type="number" name="hometeam"  style="width: 50%; display: block;" min="0">
+            <input type="number" name="awayteam" style="width: 50%; display: inline-block;" min="0">
+
+
+            -->
+            <hr>
+
+            <input type="submit" class="registerbtn" value="Plannifier un match"></input>
+        </div>
+
+    </form>
+
+</div>
+<div class="footer">
+    <p> &copy; 2021 DIGIWISE - Tous droits r&eacute;serv&eacute;s.</p>
+</div>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Resultats des joueurs</title>
+    <link rel="stylesheet" type="text/css" th:href="@{style/style.css}">
+    <link rel="icon" href="images/cubs.png" type="image/icon type">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type="text/css">
+
+    </style>
+</head>
+<body>
+<div class="header">
+    <a th:href="@{/}" class="logo"><img src="images/cubs.png" width="60" height="60"></a>
+    <div class="header-right">
+        <a class="active" th:href="@{/}">Accueil</a>
+        <a th:href="@{/list}">List des joueurs</a>
+        <a th:href="@{/fixtures}">Matches</a>
+        <a th:href="@{/listest}">Testes</a>
+        <a th:href="@{/trainings}">Entra&icirc;nements</a>
+        <form th:action="@{/logout}" method="post">
+            <input type="submit" value="Sign Out"/>
+        </form>
+    </div>
+</div>
+<div id="wrapper">
+    <h1>Resultats des joueurs</h1>
+    <table id="players">
+        <tr>
+            <th>Joueur</th>
+            <th>Mins</th>
+            <th>Buts <img src="images/football.png" width="20" height="14"></th>
+            <th>Assistes</th>
+            <th>C. J. <img src="images/yellow.png" width="10" height="13"></th>
+            <th>C. R. <img src="images/red.png" width="10" height="13"></th>
+            <th>MoM</th>
+        </tr>
+        <tr>
+            <td>Rayan Alaoui</td>
+            <td>312</td>
+            <td>7</td>
+            <td>4</td>
+            <td>3</td>
+            <td>0</td>
+            <td>2</td>
+        </tr>
+    </table>
+</div>
+<div class="footer">
+    <p> &copy; 2021 DIGIWISE - Tous droits r&eacute;serv&eacute;s.</p>
+</div>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Calendrier des matches</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/style/style.css}">
+    <link rel="icon" th:href="@{/images/cubs.png}" type="image/icon type">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+
+    </style>
+</head>
+<body>
+<div class="header">
+    <a th:href="@{/}" class="logo"><img src="images/cubs.png" width="60" height="60"></a>
+    <div class="header-right">
+        <a th:href="@{/}">Accueil</a>
+        <a th:href="@{/list}">List des joueurs</a>
+        <a th:href="@{/fixtures}">Matches</a>
+        <a class="active" th:href="@{/listest}">Testes</a>
+        <a th:href="@{/trainings}">Entra&icirc;nements</a>
+        <form th:action="@{/logout}" method="post">
+            <input type="submit" value="Sign Out"/>
+        </form>
+    </div>
+</div>
+<div id="wrapper">
+    <h1 style="text-align: center">Calendrier des matches</h1>
+    <div th:each="match :${matches}" class="card">
+        <img src="/images/calendar.png" alt="Avatar" width="25" height="25">
+        <div class="container">
+            <p th:text="*{match.date}"></p>
+            <h2><b th:text="*{match.categorie}"></b> VS <b th:text="*{match.adversary}"></b></h2>
+            <h4 th:text="*{match.lieu}"></h4>
+            <h4 th:text="*{match.type}"></h4>
+        </div>
+    </div>
+    <button class="registerbtn"><a th:href="@{/insertmatch}">Plannifier un match</a></button>
+
+</div>
+<div class="footer">
+    <p> &copy; 2021 DIGIWISE - Tous droits r&eacute;serv&eacute;s.</p>
+</div>
+</body>
+</html>

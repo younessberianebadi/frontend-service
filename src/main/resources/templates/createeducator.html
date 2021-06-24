@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Ajouter un &eacute;ducateur</title>
+    <link rel="stylesheet" type="text/css" th:href="@{style/style.css}">
+    <link rel="icon" href="images/cubs.png" type="image/icon type">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type="text/css">
+
+  </style>
+</head>
+<body>
+<div class="header">
+    <a th:href="@{/}" class="logo"><img src="images/cubs.png" width="60" height="60"></a>
+    <div class="header-right">
+        <a class="active" th:href="@{/}">Accueil</a>
+        <a th:href="@{/list}">List des joueurs</a>
+        <a th:href="@{/fixtures}">Matches</a>
+        <a th:href="@{/listest}">Testes</a>
+        <a th:href="@{/trainings}">Entra&icirc;nements</a>
+        <form th:action="@{/logout}" method="post">
+            <input type="submit" value="Sign Out"/>
+        </form>
+    </div>
+</div>
+<div id="wrapper">
+    <h1>Ajouter un &eacute;ducateur</h1>
+    <form action="/action_page.php">
+        <div class="container">
+            <label for="lname"><b>Nom</b></label>
+            <input type="text" placeholder="Entrer le nom" name="name" id="name" required>
+
+            <label for="fname"><b>Pr&eacute;nom</b></label>
+            <input type="text" placeholder="Entrer le pr&eacute;nom" name="fname" id="fname" required>
+
+
+            <label for="type"><b>Type</b></label>
+            <select id="type" name="type" required>
+                <option value="tactical">Tactique</option>
+                <option value="physical">Physique</option>
+                <option value="functional">Fonctionnel</option>
+                <option value="goalkeepers">Entraîneurs de Gardiens</option>
+            </select>
+
+
+            <label for="category"><b>Cat&eacute;gorie</b></label>
+            <select id="category" name="category" required>
+                <option value="u8">U8</option>
+                <option value="u10">U10</option>
+                <option value="u12">U12</option>
+                <option value="u14">U14</option>
+                <option value="u16">U16</option>
+            </select>
+
+            <hr>
+
+            <button type="submit" class="registerbtn">Cr&eacute;er un &eacute;ducateur</button>
+        </div>
+
+    </form>
+
+</div>
+<div class="footer">
+    <p> &copy; 2021 DIGIWISE - Tous droits r&eacute;serv&eacute;s.</p>
+</div>
+</body>
+</html>

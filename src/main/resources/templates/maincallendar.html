@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Consultation du calendrier</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/style/style.css}">
+    <link rel="icon" th:href="@{/images/cubs.png}" type="image/icon type">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<div class="header">
+    <a th:href="@{/}" class="logo"><img src="images/cubs.png" width="60" height="60"></a>
+    <div class="header-right">
+        <a class="active" th:href="@{/}">Accueil</a>
+        <a th:href="@{/list}">List des joueurs</a>
+        <a th:href="@{/fixtures}">Matches</a>
+        <a th:href="@{/listest}">Testes</a>
+        <a th:href="@{/trainings}">Entra&icirc;nements</a>
+        <form th:action="@{/logout}" method="post">
+            <input type="submit" value="Sign Out"/>
+        </form>
+    </div>
+</div>
+
+<div id="wrapper">
+    <h1>Calendrier</h1>
+    <h3>Mai</h3>
+    <table id="players">
+        <tr>
+            <td></td>
+            <th>Monday</th>
+            <th>Tuesday</th>
+            <th>Wednesday</th>
+            <th>Thursday</th>
+            <th>Friday</th>
+        </tr>
+        <tr>
+            <th>Match 1</th>
+            <td>Match U8 + Entrainement physique U12</td>
+            <td>U12</td>
+            <td>U16</td>
+            <td>U10</td>
+            <td>U14</td>
+        </tr>
+        <tr>
+            <th>Match 2</th>
+            <td>U16</td>
+            <td>U10</td>
+            <td>Match U14 + Entrainement tactique U8</td>
+            <td>U8</td>
+            <td>U12</td>
+        </tr>
+        <tr>
+            <th>Match 3</th>
+            <td>U8</td>
+            <td>U12</td>
+            <td>U16</td>
+            <td>U10</td>
+            <td>U14</td>
+        </tr>
+        <tr>
+            <th>Match 4</th>
+            <td>U16</td>
+            <td>U10</td>
+            <td>U14</td>
+            <td>U8</td>
+            <td>U12</td>
+        </tr>
+    </table>
+
+</div>
+<div class="footer">
+    <p> &copy; 2021 DIGIWISE - Tous droits r&eacute;serv&eacute;s.</p>
+</div>
+</body>
+</html>

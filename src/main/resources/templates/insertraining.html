@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Plannifier un entrainement</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/style/style.css}">
+    <link rel="icon" href="images/cubs.png" type="image/icon type">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type="text/css">
+    .container {
+  padding: 16px;
+  background-color: white;
+}
+
+/* Full-width input fields */
+input[type=text], input[type=password], input[type=date], input[type=number], input[type=time] , input[type=datetime-local], select {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
+input[type=text]:focus, input[type=datetime-local]:focus, input[type=password]:focus, input[type=date]:focus, input[type=number], input[type=time]:focus, select {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Overwrite default styles of hr */
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+
+/* Set a style for the submit button */
+.registerbtn {
+  background-color: #4285d3;
+  color: #fff;
+  padding: 16px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+
+.registerbtn:hover {
+  opacity: 1;
+}
+
+/* Add a blue text color to links */
+a {
+  color: dodgerblue;
+}
+
+/* Set a grey background color and center the text of the "sign in" section */
+.signin {
+  background-color: #f1f1f1;
+  text-align: center;
+}
+  </style>
+</head>
+<body>
+<div class="header">
+    <a th:href="@{/}" class="logo"><img src="images/cubs.png" width="60" height="60"></a>
+    <div class="header-right">
+        <a th:href="@{/}">Accueil</a>
+        <a th:href="@{/list}">List des joueurs</a>
+        <a th:href="@{/fixtures}">Matches</a>
+        <a th:href="@{/listest}">Testes</a>
+        <a class="active" th:href="@{/trainings}">Entra&icirc;nements</a>
+        <form th:action="@{/logout}" method="post">
+            <input type="submit" value="Sign Out"/>
+        </form>
+    </div>
+</div>
+<div id="wrapper">
+    <h1 style="text-align: center;">Plannifier un entrainement</h1>
+    <form th:object="${training}" th:action="@{/saveTraining}" method="post">
+        <div class="container">
+            <label for="date"><b>Date et Heure</b></label>
+            <input type="datetime-local" th:field="*{datetime}" id="date" name="date" required>
+
+
+            <label for="category"><b>Cat&eacute;gorie</b></label>
+            <select id="category" name="category" th:field="*{category}" required>
+                <option th:value="'U6'">U6</option>
+                <option th:value="'U8'">U8</option>
+                <option th:value="'U10'">U10</option>
+                <option th:value="'U12'">U12</option>
+                <option th:value="'U14'">U14</option>
+                <option th:value="'U16'">U16</option>
+
+            </select>
+
+
+            <label for="type"><b>Type</b></label>
+            <select th:field="*{type}" id="type" name="type">
+                <option th:value="'Tactique'">Tactique</option>
+                <option th:value="'Fonctionnel'">Fonctionnel</option>
+                <option th:value="'Physique'">Physique</option>
+            </select>
+
+
+            <hr>
+
+            <button type="submit" class="registerbtn">Plannifier</button>
+        </div>
+
+    </form>
+
+</div>
+<div class="footer">
+    <p> &copy; 2021 DIGIWISE - Tous droits r&eacute;serv&eacute;s.</p>
+</div>
+</body>
+</html>

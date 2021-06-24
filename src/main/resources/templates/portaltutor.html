@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Parent</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/style/style.css}">
+    <link rel="icon" th:href="@{/images/cubs.png}" type="image/icon type">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<div class="header">
+    <a th:href="@{/}" class="logo"><img src="images/cubs.png" width="60" height="60"></a>
+    <div class="header-right">
+        <a class="active" th:href="@{/}">Accueil</a>
+        <a th:href="@{/list}">List des joueurs</a>
+        <a th:href="@{/fixtures}">Matches</a>
+        <a th:href="@{/listest}">Testes</a>
+        <a th:href="@{/trainings}">Entra&icirc;nements</a>
+        <form th:action="@{/logout}" method="post">
+            <input type="submit" value="Sign Out"/>
+        </form>
+    </div>
+</div>
+<div id="wrapper">
+    <h1>Bonjour Parent!</h1>
+    <div class="card">
+        <img th:src="@{/images/abs.png}" alt="Avatar" width="50" height="50">
+        <div class="container">
+            <a th:href="@{/dislplayAbscence}">Abscence</a>
+        </div>
+    </div>
+    <div class="card">
+        <img th:src="@{/images/test.png}" alt="Avatar" width="50" height="50">
+        <div class="container">
+            <a th:href="@{/listest}">Calendriers des testes</a>
+        </div>
+    </div>
+    <div class="card">
+        <img th:src="@{/images/result_game.png}" alt="Avatar" width="50" height="50">
+        <div class="container">
+            <a th:href="@{/fixtures}">Calendrier des matches</a>
+        </div>
+    </div>
+</div>
+<div class="footer">
+    <p> &copy; 2021 DIGIWISE - Tous droits r&eacute;serv&eacute;s.</p>
+</div>
+</body>
+</html>
